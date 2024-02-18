@@ -14,10 +14,10 @@ bool isPrime(int n) {
 }
 
 void *enqueueFromStdin(void *arg) {
-    queue queue = (Queue *)arg;
-    int num;
+    queue queue = (Queue*)arg;
+    int number = 0;
 
-    while (scanf("%d", &num) != EOF) enqueue(queue, num);
+    while (scanf("%d", &number) != EOF) enqueue(queue, number);
 
     for (int i = 0; i < 6; i++) enqueue(queue, -1); // 6 to make all threads stop
 
@@ -25,13 +25,12 @@ void *enqueueFromStdin(void *arg) {
 }
 
 void *primeCounter(void *arg) {
-    queue queue = (Queue *)arg;
-    int number;
+    queue queue = (Queue*)arg;
 
-    while (1) {
-        number = dequeue(queue);
+    while (true) {
+        int number = dequeue(queue);
         if (number == -1) break;
-        if (isPrime(number)) atomic_fetch_add(&queue->counter, 1);
+        if (isPrime(number) == true) atomic_fetch_add(&(queue->counter), 1);
     }
     return NULL;
 }
