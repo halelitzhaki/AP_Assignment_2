@@ -1,5 +1,10 @@
 #include "queue.h"
 
+/**
+ * Function to initialize queue
+ * Input: NULL
+ * Output: queue (the initialized queue)
+*/
 queue initQueue() {
     queue queue = (Queue *)malloc(sizeof(Queue));
     if (queue == NULL) exit(0);
@@ -21,6 +26,11 @@ queue initQueue() {
     return queue;
 }
 
+/**
+ * Function to enqueue values to the circular array in parallel
+ * Input: queue (queue), int (value)
+ * Output: None
+*/
 void enqueue(queue queue, int value) {
     if (queue == NULL) {
         printf("queue null");
@@ -45,6 +55,11 @@ void enqueue(queue queue, int value) {
     pthread_cond_signal(&(queue->cond));
 }
 
+/**
+ * Function to dequeue numbers from the circular array in parallel
+ * Input: queue (queue)
+ * Output: int (the argument value)
+*/
 int dequeue(queue queue) {
     if (queue == NULL) {
         printf("queue null");
@@ -71,6 +86,11 @@ int dequeue(queue queue) {
     return value;
 }
 
+/**
+ * Function to free queue's allocated memory
+ * Input: queue (queue)
+ * Output: None
+*/
 void freeQueue(queue queue) {
     pthread_mutex_destroy(&(queue->mutex));
     pthread_cond_destroy(&(queue->cond));

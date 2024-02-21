@@ -8,7 +8,7 @@
 #include <stdatomic.h>
 
 
-#define SIZE 1024
+#define SIZE 4056
 
 typedef struct Queue {
     // The array that will store the numbers from the generator
