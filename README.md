@@ -22,7 +22,7 @@ make
 
 To use the program, run on terminal the following command:
 
-./randomGenerator <seed> <amount of random numbers to check if prime> | ./primeCounter
+./randomGenerator [seed] [amount of random numbers to check if prime] | ./primeCounter
 
 For example - 
 ```bash
